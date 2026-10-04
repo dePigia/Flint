@@ -2,8 +2,11 @@ project(Flint)
 
 
 add_library(Flint SHARED
-    src/Test.cpp
-    src/Test.h
+        src/Flint/core.h
+        src/Flint/application.cpp
+        src/Flint/application.h
+        src/flint.h
+        src/Flint/entry-point.h
 )
 
 target_include_directories(Flint PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)

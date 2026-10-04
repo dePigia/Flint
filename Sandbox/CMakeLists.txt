@@ -1,7 +1,7 @@
 project(Sandbox)
 
 add_executable(Sandbox
-    src/Application.cpp
+        src/sandbox-app.cpp
 )
 
 target_link_libraries(Sandbox PRIVATE Flint)
