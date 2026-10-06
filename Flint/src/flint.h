@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Flint/application.h"
-#include <cstdio>
+#include "Flint/log.h"
 
 
 // Entry-Point

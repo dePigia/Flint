@@ -1,0 +1,3 @@
+[submodule "Flint/vendor/spdlog"]
+	path = Flint/vendor/spdlog
+	url = https://github.com/gabime/spdlog
