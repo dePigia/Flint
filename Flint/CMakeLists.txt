@@ -1,15 +1,16 @@
 project(Flint)
 
 
-add_library(Flint SHARED
-        src/Flint/core.h
-        src/Flint/application.cpp
-        src/Flint/application.h
-        src/flint.h
-        src/Flint/entry-point.h
-        src/Flint/log.cpp
-        src/Flint/log.h
+file(GLOB_RECURSE FLINT_SOURCES
+    "src/*.h"
+    "src/*.cpp"
 )
+
+add_library(Flint SHARED ${FLINT_SOURCES}
+        src/Flint/events/event.h
+        src/Flint/events/key_event.h
+        src/Flint/events/application_event.h
+        src/Flint/events/mouse_event.h)
 
 target_include_directories(Flint PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src
