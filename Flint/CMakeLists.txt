@@ -1,6 +1,14 @@
 project(Flint)
 
 
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
+
+add_subdirectory(vendor/glfw)
+
+
 file(GLOB_RECURSE FLINT_SOURCES
     "src/*.h"
     "src/*.cpp"
@@ -10,11 +18,28 @@ add_library(Flint SHARED ${FLINT_SOURCES}
         src/Flint/events/event.h
         src/Flint/events/key_event.h
         src/Flint/events/application_event.h
-        src/Flint/events/mouse_event.h)
+        src/Flint/events/mouse_event.h
+        src/Flint/flint_pch.h
+        src/Flint/flint_pch.cpp
+        src/Flint/window.h
+        src/Platform/Linux/LinuxWindow.cpp
+        src/Platform/Linux/LinuxWindow.h)
 
 target_include_directories(Flint PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw/include
+)
+
+target_precompile_headers(Flint PRIVATE
+    src/Flint/flint_pch.h
+)
+
+find_package(OpenGL REQUIRED)
+
+target_link_libraries(Flint PRIVATE
+    glfw
+    OpenGL::GL
 )
 
 target_compile_definitions(Flint PRIVATE FLINT_BUILD_DLL)

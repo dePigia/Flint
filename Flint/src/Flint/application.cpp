@@ -1,23 +1,24 @@
+#include "flint_pch.h"
 #include "application.h"
-
 #include "log.h"
 #include "events/application_event.h"
+#include <GLFW/glfw3.h>
 
 
 namespace Flint {
     Application::Application() {
+        m_Window = std::unique_ptr<Window>(Window::Create());
     }
 
     Application::~Application() {
     }
 
     void Application::Run() {
-        WindowResizeEvent e(1280, 720);
+        while (m_Running) {
+            glClearColor(1, 0, 1, 1);
+            glClear(GL_COLOR_BUFFER_BIT);
 
-        if (e.IsInCategory(EventCategoryApplication)) {
-            FLINT_CORE_TRACE("{0}", e);
+            m_Window->OnUpdate();
         }
-
-        while (true);
     }
 }

@@ -2,10 +2,7 @@
 
 
 #include "Flint/core.h"
-#include <string>
-#include <functional>
 #include <sstream>
-#include <type_traits>
 
 
 namespace Flint {
