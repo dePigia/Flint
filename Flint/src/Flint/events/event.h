@@ -2,6 +2,7 @@
 
 
 #include "Flint/core.h"
+#include <functional>
 #include <sstream>
 
 

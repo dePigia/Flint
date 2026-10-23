@@ -2,6 +2,7 @@
 
 #include "Flint/application.h"
 #include "Flint/log.h"
+#include "Flint/layer.h"
 
 // Events
 #include "Flint/events/event.h"

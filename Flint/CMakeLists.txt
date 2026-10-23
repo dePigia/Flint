@@ -23,7 +23,11 @@ add_library(Flint SHARED ${FLINT_SOURCES}
         src/Flint/flint_pch.cpp
         src/Flint/window.h
         src/Platform/Linux/LinuxWindow.cpp
-        src/Platform/Linux/LinuxWindow.h)
+        src/Platform/Linux/LinuxWindow.h
+        src/Flint/layer.cpp
+        src/Flint/layer.h
+        src/Flint/layer_stack.cpp
+        src/Flint/layer_stack.h)
 
 target_include_directories(Flint PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src
@@ -42,7 +46,10 @@ target_link_libraries(Flint PRIVATE
     OpenGL::GL
 )
 
-target_compile_definitions(Flint PRIVATE FLINT_BUILD_DLL)
+target_compile_definitions(Flint PRIVATE
+        FLINT_BUILD_DLL
+        FMT_HEADER_ONLY
+)
 
 set_target_properties(Flint PROPERTIES CXX_VISIBILITY_PRESET hidden)
 set_target_properties(Flint PROPERTIES VISIBILITY_INLINES_HIDDEN ON)

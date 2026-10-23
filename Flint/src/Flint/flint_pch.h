@@ -1,5 +1,7 @@
 #pragma once
 
+//#define FMT_HEADER_ONLY
+
 #include <iostream>
 #include <memory>
 #include <utility>
