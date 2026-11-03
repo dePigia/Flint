@@ -8,6 +8,7 @@ set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(vendor/glfw)
 add_subdirectory(vendor/glad)
+add_subdirectory(vendor/imgui)
 
 
 file(GLOB_RECURSE FLINT_SOURCES
@@ -28,12 +29,16 @@ add_library(Flint SHARED ${FLINT_SOURCES}
         src/Flint/layer.cpp
         src/Flint/layer.h
         src/Flint/layer_stack.cpp
-        src/Flint/layer_stack.h)
+        src/Flint/layer_stack.h
+        src/Flint/imgui/imgui_layer.h
+        src/Flint/imgui/imgui_layer.cpp)
 
 target_include_directories(Flint PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/spdlog/include
         ${CMAKE_CURRENT_SOURCE_DIR}/vendor/glfw/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui
+        ${CMAKE_CURRENT_SOURCE_DIR}/vendor/imgui/backends
 )
 
 target_precompile_headers(Flint PRIVATE
@@ -45,6 +50,7 @@ find_package(OpenGL REQUIRED)
 target_link_libraries(Flint PRIVATE
     glfw
     glad
+    imgui
     OpenGL::GL
 )
 

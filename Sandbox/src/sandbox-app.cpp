@@ -21,7 +21,7 @@ public:
 class SandBox: public Flint::Application {
 public:
     SandBox() {
-        PushLayer(new ExampleLayer());
+        PushLayer(new Flint::ImGuiLayer());
     }
 
     ~SandBox() {

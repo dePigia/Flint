@@ -12,3 +12,6 @@
 
 // Entry-Point
 #include "Flint/entry-point.h"
+
+// ImGui
+#include "Flint/imgui/imgui_layer.h"

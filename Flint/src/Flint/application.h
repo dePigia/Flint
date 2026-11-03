@@ -15,6 +15,8 @@ namespace Flint {
         std::unique_ptr<Window> m_Window;
         bool m_Running = true;
         LayerStack m_LayerStack;
+
+        static Application* s_Instance;
     public:
         Application();
         virtual ~Application();
@@ -25,6 +27,9 @@ namespace Flint {
 
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* overlay);
+
+        inline Window& GetWindow() { return *m_Window; }
+        inline static Application& Get() { return *s_Instance; }
     };
 
     Application* CreateApplication();
