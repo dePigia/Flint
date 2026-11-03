@@ -7,6 +7,7 @@ set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
 set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(vendor/glfw)
+add_subdirectory(vendor/glad)
 
 
 file(GLOB_RECURSE FLINT_SOURCES
@@ -43,6 +44,7 @@ find_package(OpenGL REQUIRED)
 
 target_link_libraries(Flint PRIVATE
     glfw
+    glad
     OpenGL::GL
 )
 

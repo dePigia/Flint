@@ -1,6 +1,11 @@
 #include "Flint/flint_pch.h"
 #include "LinuxWindow.h"
 
+#define GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
+
+#include <glad/glad.h>
+
 #include "Flint/events/application_event.h"
 #include "Flint/events/mouse_event.h"
 #include "Flint/events/key_event.h"
@@ -46,6 +51,17 @@ namespace Flint {
 
         m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
         glfwMakeContextCurrent(m_Window);
+
+        int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+        if (!status) {
+            FLINT_CORE_ERROR("Failed to initialize GLAD");
+            return;
+        }
+
+        FLINT_CORE_INFO("OpenGL Info:");
+        FLINT_CORE_INFO("Vendor: {0}", (const char *)glGetString(GL_VENDOR));
+        FLINT_CORE_INFO("Renderer: {0}", (const char *)glGetString(GL_RENDERER));
+        FLINT_CORE_INFO("Version: {0}", (const char *)glGetString(GL_VERSION));
 
         glfwSetWindowUserPointer(m_Window, &m_Data);
         SetVSync(true);
